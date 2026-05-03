@@ -4,13 +4,13 @@ Welcome to Genki Cat, a fun project featuring a cheerful cat! This project incor
 
 ## Demo
 
-You can see the project in action [here](https://genkicat.savazeb.com).
+You can see the project in action [here](https://vapnguyen24.github.io/inanimate/).
 
 ## How to Use
 
 1. Clone this repository to your local machine.
 2. Open the `index.html` file in your web browser.
-3. Click on the "はい" (Yes) or "いいえ" (No) buttons to interact with Genki Cat and see different reactions.
+3. Click on the "Có" (Yes) or "Không" (No) buttons to interact with Genki Cat and see different reactions.
 4. Enjoy the fun animations and messages!
 
 ## Features
