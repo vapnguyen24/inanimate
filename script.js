@@ -65,7 +65,7 @@ function createFireworks() {
     }
 }
 
-function createThunderstorm() {
+function createThunderstorm(customDuration = duration) {
     var thunderstormContainer = document.createElement('div');
     thunderstormContainer.id = 'thunderstorm';
 
@@ -78,7 +78,7 @@ function createThunderstorm() {
     setTimeout(function () {
         clearInterval(rain);
         thunderstormContainer.remove();
-    }, duration * 1000);
+    }, customDuration * 1000);
 }
 
 // Function to create raindrops
@@ -107,7 +107,7 @@ function createRaindrop(thunderstormContainer) {
     );
 }
 
-function showFunnyMessage(message) {
+function showFunnyMessage(message, customDuration = duration) {
     // Create a div for the funny message
     var funnyMessageDiv = document.createElement('div');
     funnyMessageDiv.className = 'funny-message';
@@ -119,7 +119,7 @@ function showFunnyMessage(message) {
     // Remove the message after a delay
     setTimeout(function () {
         funnyMessageDiv.remove();
-    }, duration * 1000); // Remove the message after (n) seconds
+    }, customDuration * 1000); // Remove the message after (n) seconds
 }
 
 function showDancingCat(referenceImage) {
@@ -132,14 +132,14 @@ function showDancingCat(referenceImage) {
     }, duration * 1000);
 }
 
-function showCryingCat(referenceImage) {
+function showCryingCat(referenceImage, customDuration = duration) {
     // Change the gif image
     referenceImage.src = 'public/cat-state-4.gif';
 
     // Bring back the image after delay
     setTimeout(function () {
         referenceImage.src = 'public/cat-state-1.gif';
-    }, duration * 1000);
+    }, customDuration * 1000);
 }
 
 function preloadImages() {
@@ -194,7 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Set a delay before changing the image source on mouseleave
             mouseLeaveTimeout = setTimeout(function () {
                 isMouseOver = false;
-                imageElement.src = 'public/cat-state-1.gif';
+                // Only reset if it's not currently dancing (state 2) or crying (state 4)
+                if (!imageElement.src.includes('public/cat-state-2.gif') && !imageElement.src.includes('public/cat-state-4.gif')) {
+                    imageElement.src = 'public/cat-state-1.gif';
+                }
             }, 300); // Adjust the delay as needed
         }
     });
@@ -255,18 +258,20 @@ document.addEventListener("DOMContentLoaded", function () {
         noAudio.currentTime = 0;
         noAudio.play().catch(e => console.log("Audio play failed:", e));
 
+        const noDuration = 15; // Mèo khóc trong 15 giây
+
         audioTimeout = setTimeout(function() {
             noAudio.pause();
             noAudio.currentTime = 0;
-        }, duration * 1000);
+        }, noDuration * 1000);
 
         // Show crying cat
-        showCryingCat(imageElement);
+        showCryingCat(imageElement, noDuration);
 
         // Make it rain
-        createThunderstorm();
+        createThunderstorm(noDuration);
 
         // Add a funny message when the "Không" button is clicked
-        showFunnyMessage("Muốn thấy nụ cười của mọi người quá meo 💔");
+        showFunnyMessage("Muốn thấy nụ cười của mọi người quá meo 💔", noDuration);
     });
 });
