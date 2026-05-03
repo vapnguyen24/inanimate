@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hôm nay bạn có khỏe không meo meo meo meo〜！">
+
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="public/favicon.gif" type="image/x-icon">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="public/manifest.json">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
+    <title>Hôm nay bạn có khỏe không!!!</title>
+
+    <!-- CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+</head>
+
+<body>
+    <!-- Your HTML content goes here -->
+    <img src="public/cat-state-1.gif" alt="Your GIF description" draggable="false">
+
+    <span>Hôm nay bạn có khỏe không?</span>
+
+    <div>
+        <button>Có</button>
+        <button>Không</button>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ by
+            <a href="https://github.com/vapnguyen24" target="_blank">vapnguyen</a>
+        </p>
+    </footer>
+
+    <!-- Include your JavaScript file at the end of the body for better performance -->
+    <script src="script.js"></script>
+    <script>
+        // Add service worker for pwa
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("sw.js");
+        }
+    </script>
+</body>
+
+</html>
