@@ -219,8 +219,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1500);
     });
 
+    // Audio elements
+    var yesAudio = new Audio('public/yes.mp3');
+    var noAudio = new Audio('public/no.mp3');
+    var audioTimeout;
+
     // Add a click event listener to the "Có" button
     yesButton.addEventListener('click', function () {
+        clearTimeout(audioTimeout);
+        // Play 'yes' audio and stop 'no' audio
+        noAudio.pause();
+        noAudio.currentTime = 0;
+        yesAudio.currentTime = 0;
+        yesAudio.play().catch(e => console.log("Audio play failed:", e));
+
         // Show dancing cat
         showDancingCat(imageElement);
 
@@ -236,6 +248,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add a click event listener to the "Không" button
     noButton.addEventListener('click', function () {
+        clearTimeout(audioTimeout);
+        // Play 'no' audio and stop 'yes' audio
+        yesAudio.pause();
+        yesAudio.currentTime = 0;
+        noAudio.currentTime = 0;
+        noAudio.play().catch(e => console.log("Audio play failed:", e));
+
+        audioTimeout = setTimeout(function() {
+            noAudio.pause();
+            noAudio.currentTime = 0;
+        }, duration * 1000);
+
         // Show crying cat
         showCryingCat(imageElement);
 
